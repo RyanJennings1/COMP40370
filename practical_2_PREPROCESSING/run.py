@@ -72,16 +72,16 @@ freq_discretizer = KBinsDiscretizer(n_bins=10,
 
 w_des = width_discretizer.fit_transform(df_pc)
 df_w_des = pd.DataFrame(data=w_des,
-                        columns=['pca'+str(i+1)+'_width' for i in range(len(df_pc.columns))])
+                        columns=['pca'+str(i)+'_width' for i in range(len(df_pc.columns))])
 
 f_des = freq_discretizer.fit_transform(df_pc)
 df_f_des = pd.DataFrame(data=f_des,
-                        columns=['pca'+str(i+1)+'_freq' for i in range(len(df_pc.columns))])
+                        columns=['pca'+str(i)+'_freq' for i in range(len(df_pc.columns))])
 
 # concatenate dataframes
 # print('Concatenating datasets...')
 # dfc = pd.concat([dfa, dfb], sort=False)
-df_out = pd.concat([df_pc, df_w_des, df_f_des], sort=False)
+df_out = pd.concat([df_2, df_w_des, df_f_des], sort=False, axis=1)
 
 # save a dataframe to csv
 df_out.to_csv('./output/question2_out.csv', index=False, float_format='%g')
