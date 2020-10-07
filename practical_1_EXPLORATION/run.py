@@ -73,6 +73,6 @@ dfc = pd.concat([dfa, dfb], sort=False)
 #
 # documentation here:
 # https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_csv.html
-dfc.to_csv('./output/question2_out.csv', index=False, float_format='%g)
+dfc.to_csv('./output/question2_out.csv', index=False, float_format='%g')
 
 print('Done!')
