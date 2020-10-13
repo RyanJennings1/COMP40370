@@ -1,0 +1,26 @@
+major,status,age,gpa,count
+French,M.A,over 30,2.8_3.2,3
+cs,junior,16...20,3.2_3.6,29
+physics,M.S,26...30,3.2_3.6,18
+engineering,Ph.D,26...30,3.6_4.0,78
+philosophy,Ph.D,26...30,3.2_3.6,5
+French,senior,16...20,3.2_3.6,40
+chemistry,junior,21...25,3.6_4.0,25
+cs,senior,16...20,3.2_3.6,70
+philosophy,M.S,over 30,3.6_4.0,15
+French,junior,16...20,2.8_3.2,8
+philosophy,junior,26...30,2.8_3.2,9
+philosophy,M.S,26...30,3.2_3.6,9
+French,junior,16...20,3.2_3.6,52
+math,senior,16...20,3.6_4.0,32
+cs,junior,16...20,3.2_3.6,76
+philosophy,Ph.D,26...30,3.6_4.0,14
+philosophy,senior,26...30,2.8_3.2,19
+French,Ph.D,over 30,2.8_3.2,1
+engineering,junior,21...25,3.2_3.6,71
+math,Ph.D,26...30,3.2_3.6,7
+chemistry,junior,16...20,3.6_4.0,46
+engineering,junior,21...25,3.2_3.6,96
+French,M.S,over 30,3.2_3.6,4
+philosophy,junior,21...25,2.8_3.2,8
+math,junior,16...20,3.6_4.0,59
