@@ -1,0 +1,12 @@
+antecedents,consequents,antecedent support,consequent support,support,confidence,lift,leverage,conviction
+"frozenset({'(-0.003, 1.0]', 'YES_save_act', 'NO_mortgage'})",frozenset({'YES_current_act'}),0.278333,0.758333,0.223333,0.802395,1.0581,0.0122639,1.22298
+"frozenset({'NO_car', 'NO_mortgage'})",frozenset({'YES_current_act'}),0.328333,0.758333,0.263333,0.80203,1.05762,0.0143472,1.22073
+frozenset({'NO_married'}),frozenset({'YES_current_act'}),0.34,0.758333,0.27,0.794118,1.04719,0.0121667,1.17381
+"frozenset({'NO_pep', 'NO_mortgage'})",frozenset({'YES_married'}),0.348333,0.66,0.285,0.818182,1.23967,0.0551,1.87
+"frozenset({'YES_current_act', 'NO_pep', 'NO_mortgage'})",frozenset({'YES_married'}),0.263333,0.66,0.215,0.816456,1.23705,0.0412,1.85241
+"frozenset({'NO_pep', 'YES_save_act', 'NO_mortgage'})",frozenset({'YES_married'}),0.236667,0.66,0.2,0.84507,1.28041,0.0438,2.19455
+"frozenset({'NO_pep', '(-0.003, 1.0]'})",frozenset({'YES_married'}),0.32,0.66,0.26,0.8125,1.23106,0.0488,1.81333
+"frozenset({'(50.667, 67.0]'})",frozenset({'YES_save_act'}),0.318333,0.69,0.251667,0.790576,1.14576,0.0320167,1.48025
+"frozenset({'(17.951, 34.333]'})","frozenset({'(4956.094, 24386.173]'})",0.325,0.475,0.29,0.892308,1.87854,0.135625,4.875
+"frozenset({'(17.951, 34.333]', 'YES_current_act'})","frozenset({'(4956.094, 24386.173]'})",0.255,0.475,0.23,0.901961,1.89886,0.108875,5.355
+"frozenset({'(17.951, 34.333]', '(4956.094, 24386.173]'})",frozenset({'YES_current_act'}),0.29,0.758333,0.23,0.793103,1.04585,0.0100833,1.16806

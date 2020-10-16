@@ -1,0 +1,21 @@
+support,itemsets
+0.36,frozenset({'16...20'})
+0.24,frozenset({'2.8_3.2'})
+0.16,frozenset({'21...25'})
+0.32,frozenset({'26...30'})
+0.48,frozenset({'3.2_3.6'})
+0.28,frozenset({'3.6_4.0'})
+0.24,frozenset({'French'})
+0.16,frozenset({'M.S'})
+0.2,frozenset({'Ph.D'})
+0.44,frozenset({'junior'})
+0.16,frozenset({'over 30'})
+0.28,frozenset({'philosophy'})
+0.16,frozenset({'senior'})
+0.2,"frozenset({'16...20', '3.2_3.6'})"
+0.24,"frozenset({'junior', '16...20'})"
+0.16,"frozenset({'junior', '21...25'})"
+0.16,"frozenset({'26...30', '3.2_3.6'})"
+0.16,"frozenset({'26...30', 'Ph.D'})"
+0.2,"frozenset({'26...30', 'philosophy'})"
+0.2,"frozenset({'junior', '3.2_3.6'})"

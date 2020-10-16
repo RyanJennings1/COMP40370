@@ -1,0 +1,4 @@
+antecedents,consequents,antecedent support,consequent support,support,confidence,lift,leverage,conviction
+frozenset({'21...25'}),frozenset({'junior'}),0.16,0.44,0.16,1,2.27273,0.0896,inf
+frozenset({'Ph.D'}),frozenset({'26...30'}),0.2,0.32,0.16,0.8,2.5,0.096,3.4
+frozenset({'philosophy'}),frozenset({'26...30'}),0.28,0.32,0.2,0.714286,2.23214,0.1104,2.38
