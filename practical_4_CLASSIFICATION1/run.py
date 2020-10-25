@@ -31,10 +31,10 @@ ax.set_ylim([0, 100])
 ax.set_xlabel('Final Score')
 ax.set_ylabel('Midterm Score')
 ax.set_title('Plot of Midterm Exam Scores vs Final Exam Scores')
-plt.show()
 plt.tight_layout()
 print('Writing plot to ./output/marks.png ...')
 plt.savefig('output/marks.png', dpi=199)
+plt.show()
 
 print('Generating linear regression model from data for question 1.2 ...')
 lin_reg = LinearRegression().fit(df_1['midterm'].values.reshape(-1, 1),
@@ -54,10 +54,10 @@ ax.set_ylim([0, 100])
 ax.set_xlabel('Final Score')
 ax.set_ylabel('Midterm Score')
 ax.set_title('Plot of Midterm Exam Scores vs Final Exam Scores')
-plt.show()
 plt.tight_layout()
 print('Writing plot to ./output/marks_line_best_fit.png ...')
 plt.savefig('output/marks_line_best_fit.png', dpi=199)
+plt.show()
 
 print('Predicting the final mark for a midterm of 86 for question 1.3 ...')
 predicted_value = lin_reg.predict(np.array([[86]]))
@@ -101,8 +101,8 @@ clf_high_model = clf_high.fit(training_data, test_data)
 
 plt.figure()
 plot_tree(clf_high_model)
-plt.show()
 plt.savefig('./output/tree_high.png')
+plt.show()
 
 print('Creating low threshold decision tree classifier ...')
 clf_low = DecisionTreeClassifier(criterion='entropy',
@@ -113,8 +113,8 @@ clf_low_model = clf_low.fit(training_data, test_data)
 # each leaf in the decision tree
 plt.figure(figsize=(18, 8))
 plot_tree(clf_low_model, filled=True)
-plt.show()
 plt.tight_layout()
 plt.savefig('./output/tree_low.png')
+plt.show()
 
 print('Done!')
