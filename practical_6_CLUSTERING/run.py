@@ -113,6 +113,9 @@ df_3_norm = MinMaxScaler().fit_transform(df_3[['x', 'y']])
 
 print('Using DBSCAN to cluster points ...')
 df_3_dbscan1 = DBSCAN(eps=0.04, min_samples=4).fit(df_3_norm)
+# Set x, y to be their normalised equivalents
+df_3 = pd.DataFrame(df_3_norm, columns=['x', 'y'])
+df_3['kmeans'] = df_3_kmeans1.labels_
 df_3['dbscan1'] = df_3_dbscan1.labels_
 
 plt.scatter(df_3['x'], df_3['y'], c=df_3['dbscan1'], cmap='brg')
