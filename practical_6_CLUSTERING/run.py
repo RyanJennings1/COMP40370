@@ -9,7 +9,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-from sklearn.clustering import KMeans
+from sklearn.cluster import KMeans
+from sklearn.cluster import DBSCAN
+from sklearn.preprocessing import MinMaxScaler
 
 # Create the output directory if it does not exist
 pathlib.Path('./output').mkdir(exist_ok=True)
@@ -18,7 +20,7 @@ print('*' * 20)
 print('Question 1')
 print('*' * 20)
 
-# Load the first csv file of marks data
+# Load the first csv file of x, y data
 df_1 = pd.read_csv('./specs/question_1.csv')
 
 print('Performing KMeans clustering on question 1 dataset ...')
@@ -49,51 +51,94 @@ print('*' * 20)
 print('Question 2')
 print('*' * 20)
 
-# Load the second csv file of borrower data
-df_2 = pd.read_csv('./specs/borrower_question2.csv')
+# Load the second csv file of cereal data
+df_2 = pd.read_csv('./specs/question_2.csv')
 
-# Filter out TID attribute from dataset
-print('Dropping attribute "TID"...')
-del df_2['TID']
+# Filter out attributes we won't be using from dataset
+print('Dropping attributes NAME, MANUF, TYPE and RATING ...')
+df_2 = df_2.drop(['NAME', 'MANUF', 'TYPE', 'RATING'], axis=1)
 
-print('Formatting our input data for Question 2 to use with our models ...')
-# Change HomeOwner, MaritalStatus and DefaultedBorrower fields from strings to floats
-df_2['HomeOwner'] = df_2['HomeOwner'].apply(lambda x: 1.0 if x == 'Yes' else 0.0)
-df_2['MaritalStatus'] = df_2['MaritalStatus'].map({
-    'Single': 0.0,
-    'Married': 1.0,
-    'Divorced': 2.0
-    })
-df_2['DefaultedBorrower'] = df_2['DefaultedBorrower'].apply(lambda x: 1.0 if x == 'Yes' else 0.0)
+print('Generating different KMeans clusterings and adding to dataframe ...')
+df_2_kmeans1 = KMeans(n_clusters=5,
+                      random_state=0,
+                      n_init=5,
+                      max_iter=100).fit(df_2)
+df_2_kmeans2 = KMeans(n_clusters=5,
+                      random_state=0,
+                      n_init=100,
+                      max_iter=100).fit(df_2)
+df_2_kmeans3 = KMeans(n_clusters=3,
+                      random_state=0,
+                      n_init=100,
+                      max_iter=100).fit(df_2)
 
-print('Splitting training and test data ...')
-# Thankfully here we are provided with a field that tells us if
-# a borrower defaulted on their loan to see how the other fields
-# impacted the result
-training_data = df_2.drop('DefaultedBorrower', axis=1)
-test_data = df_2['DefaultedBorrower']
+df_2['config1'] = df_2_kmeans1.labels_
+df_2['config2'] = df_2_kmeans2.labels_
+df_2['config3'] = df_2_kmeans3.labels_
 
-print('Creating high decision tree classifier ...')
-clf_high = DecisionTreeClassifier(criterion='entropy',
-                                  min_impurity_decrease=0.5)
-clf_high_model = clf_high.fit(training_data, test_data)
+print('Saving data for question 2.7 ...')
+df_2.to_csv('./output/question_2.csv', index=False)
 
-plt.figure()
-plot_tree(clf_high_model)
-plt.savefig('./output/tree_high.png')
-plt.show()
+print('Done!')
+print()
 
-print('Creating low threshold decision tree classifier ...')
-clf_low = DecisionTreeClassifier(criterion='entropy',
-                                 min_impurity_decrease=0.1)
-clf_low_model = clf_low.fit(training_data, test_data)
+print('*' * 20)
+print('Question 3')
+print('*' * 20)
 
-# Set the figsize so we can clearly see the arrows between
-# each leaf in the decision tree
-plt.figure(figsize=(18, 8))
-plot_tree(clf_low_model, filled=True)
+# Load the third file of 2-dimensional points data
+df_3 = pd.read_csv('./specs/question_3.csv')
+print('Discarding ID attribute ...')
+df_3 = df_3.drop(['ID'], axis=1)
+
+print('Generating KMeans for question 3.1 ...')
+df_3_kmeans1 = KMeans(n_clusters=7,
+                      n_init=5,
+                      max_iter=100,
+                      random_state=0).fit(df_3)
+df_3['kmeans'] = df_3_kmeans1.labels_
+
+plt.scatter(df_3['x'], df_3['y'], c=df_3['kmeans'], cmap='brg')
+ax = plt.gca()
+ax.set_xlabel('x')
+ax.set_ylabel('y')
+ax.set_title('Plot of x, y Coloured by KMeans Clustering')
 plt.tight_layout()
-plt.savefig('./output/tree_low.png')
+print('Writing plot to ./output/question_3_1.pdf ...')
+plt.savefig('output/question_3_1.pdf', dpi=199)
 plt.show()
+
+print('Normalising question_3 x and y coordinates ...')
+df_3_norm = MinMaxScaler().fit_transform(df_3[['x', 'y']])
+
+print('Using DBSCAN to cluster points ...')
+df_3_dbscan1 = DBSCAN(eps=0.04, min_samples=4).fit(df_3_norm)
+df_3['dbscan1'] = df_3_dbscan1.labels_
+
+plt.scatter(df_3['x'], df_3['y'], c=df_3['dbscan1'], cmap='brg')
+ax = plt.gca()
+ax.set_xlabel('x')
+ax.set_ylabel('y')
+ax.set_title('Plot of x, y Coloured by DBSCAN Clustering epsilon=0.04')
+plt.tight_layout()
+print('Writing plot to ./output/question_3_2.pdf ...')
+plt.savefig('output/question_3_2.pdf', dpi=199)
+plt.show()
+
+df_3_dbscan2 = DBSCAN(eps=0.08, min_samples=4).fit(df_3_norm)
+df_3['dbscan2'] = df_3_dbscan2.labels_
+
+plt.scatter(df_3['x'], df_3['y'], c=df_3['dbscan2'], cmap='brg')
+ax = plt.gca()
+ax.set_xlabel('x')
+ax.set_ylabel('y')
+ax.set_title('Plot of x, y Coloured by DBSCAN Clustering epsilon=0.08')
+plt.tight_layout()
+print('Writing plot to ./output/question_3_3.pdf ...')
+plt.savefig('output/question_3_3.pdf', dpi=199)
+plt.show()
+
+print('Saving data for question 3.5 ...')
+df_3.to_csv('./output/question_3.csv', index=False)
 
 print('Done!')
